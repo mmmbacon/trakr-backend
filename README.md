@@ -22,11 +22,13 @@ bundle install
 bin/rails db:create db:schema:load
 ```
 
-Optional seed data:
+Seed demo data (portfolio preview with sample jobs):
 
 ```sh
 bin/rails db:seed
 ```
+
+Demo login is enabled when `DEMO_MODE=true` (default in development). Visitors are signed in as the seeded demo user automatically.
 
 ## Run
 

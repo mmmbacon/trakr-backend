@@ -6,14 +6,17 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-# Users
-user1 = User.find_or_create_by!({
+# Demo user for portfolio / local development (see DEMO_MODE)
+user1 = User.find_or_initialize_by(email: 'beetman@shrutefarms.com')
+user1.assign_attributes(
   first_name: 'Dwight',
   last_name: 'Schrute',
-  email: 'beetman@shrutefarms.com',
-  password_digest: '$2y$10$cc8dAb5QbKJOsWxeaxZO2.MfUyme9PZvwD2BdeGoEu78VXnZdHygm'
-})
+  password: 'demo',
+  password_confirmation: 'demo'
+)
+user1.save!
 
+return if user1.jobs.exists?
 
 ## Jobs
 user1.jobs.create!({
