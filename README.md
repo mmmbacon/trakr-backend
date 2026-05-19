@@ -1,24 +1,41 @@
-# README
+# Trakr Backend
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Rails API for the [Trakr](https://github.com/courtamos/final-frontend) job application tracker.
 
-Things you may want to cover:
+## Prerequisites
 
-* Ruby version
+- Ruby 3.3 (`brew install ruby@3.3`)
+- PostgreSQL (`brew install postgresql@14` and `brew services start postgresql@14`)
 
-* System dependencies
+Add Ruby to your shell (once):
 
-* Configuration
+```sh
+echo 'export PATH="/opt/homebrew/opt/ruby@3.3/bin:$PATH"' >> ~/.zshrc
+source ~/.zshrc
+```
 
-* Database creation
+## Setup
 
-* Database initialization
+```sh
+cd trakr-backend
+bundle install
+bin/rails db:create db:schema:load
+```
 
-* How to run the test suite
+Optional seed data:
 
-* Services (job queues, cache servers, search engines, etc.)
+```sh
+bin/rails db:seed
+```
 
-* Deployment instructions
+## Run
 
-* ...
+```sh
+bin/rails server
+```
+
+API runs at **http://localhost:3000** (e.g. `GET /api/logged_in`).
+
+## Frontend
+
+In the `trakr` repo, start the React app (`npm start` on port 8080). It proxies `/api` to this server via `src/setupProxy.js`.
